@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -30,25 +31,31 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (BuildContext context, Widget? child) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
+          child: child!
+        );
+      },
       title: 'ShiaHub',
       theme: ThemeData(
           scaffoldBackgroundColor: MyColors.background(),
           visualDensity: VisualDensity.adaptivePlatformDensity,
-          appBarTheme: const AppBarTheme(
+          appBarTheme: AppBarTheme(
             iconTheme: IconThemeData(
-              color: Colors.white
+              color: MyColors.text()
             )
           ),
           iconTheme: IconThemeData(
-            color: darkModeOn()?Colors.white:Colors.black
+            color: darkModeOn()?MyColors.text():Colors.black
           ),
-          textTheme: const TextTheme(
+          textTheme: TextTheme(
               headlineSmall: TextStyle(
-                color: Colors.white,
+                color: MyColors.text(),
               ),
               titleLarge: TextStyle(
-                color: Colors.white,
-              )), colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(background: Colors.white)),
+                color: MyColors.text(),
+              )), colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(background: MyColors.text())),
       home: MyHomePage(title: 'ShiaHub'),
       routes: <String, WidgetBuilder>{
         "/quran/": (BuildContext context) => JuzOrSurah(),
@@ -246,11 +253,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Settings",
+                          FittedBox(
+                            fit: BoxFit.contain,
+                            child: Text("Settings",
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge!
-                                  .copyWith(fontSize: titleSize(context))),
+                                  .copyWith(fontSize: titleSize(context)))
+                          ),
                         ]),
                   ),
                   actions: [
@@ -364,12 +374,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                               BoxConstraints constraints) {
                                         return Container(
                                             width: constraints.maxWidth,
-                                            child: const Text(
+                                            child: Text(
                                               "Leva Research Institute, Qom",
                                               overflow: TextOverflow.clip,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
-                                                  color: Colors.white),
+                                                  color: MyColors.text()),
                                             ));
                                       }),
                                     ),
@@ -380,12 +390,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                               BoxConstraints constraints) {
                                         return Container(
                                             width: constraints.maxWidth,
-                                            child: const Text(
+                                            child: Text(
                                               "Institute of Geophysics, Tehran",
                                               overflow: TextOverflow.clip,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
-                                                  color: Colors.white),
+                                                  color: MyColors.text()),
                                             ));
                                       }),
                                     ),
@@ -449,12 +459,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                               BoxConstraints constraints) {
                                         return Container(
                                             width: constraints.maxWidth,
-                                            child: const Text(
+                                            child: Text(
                                               "Sunset to Fajr (Sistani, Khamenei, Fadlallah)",
                                               overflow: TextOverflow.clip,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
-                                                  color: Colors.white),
+                                                  color: MyColors.text()),
                                             ));
                                       }),
                                     ),
@@ -465,12 +475,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                               BoxConstraints constraints) {
                                         return Container(
                                             width: constraints.maxWidth,
-                                            child: const Text(
+                                            child: Text(
                                               "Sunset to Sunrise (Khoei)",
                                               overflow: TextOverflow.clip,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
-                                                  color: Colors.white),
+                                                  color: MyColors.text()),
                                             ));
                                       }),
                                     ),
@@ -638,12 +648,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 BoxConstraints constraints) {
                                           return Container(
                                               width: constraints.maxWidth,
-                                              child: const Text(
+                                              child: Text(
                                                 "Hajj Mohammad Rammal",
                                                 overflow: TextOverflow.clip,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                    color: Colors.white),
+                                                    color: MyColors.text()),
                                               ));
                                         }),
                                       ),
@@ -654,12 +664,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 BoxConstraints constraints) {
                                           return Container(
                                               width: constraints.maxWidth,
-                                              child: const Text(
+                                              child: Text(
                                                 "Nizar Al Qatari",
                                                 overflow: TextOverflow.clip,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                    color: Colors.white),
+                                                    color: MyColors.text()),
                                               ));
                                         }),
                                       ),
@@ -670,12 +680,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 BoxConstraints constraints) {
                                           return Container(
                                               width: constraints.maxWidth,
-                                              child: const Text(
+                                              child: Text(
                                                 "Ahmad Al Dabbagh",
                                                 overflow: TextOverflow.clip,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                    color: Colors.white),
+                                                    color: MyColors.text()),
                                               ));
                                         }),
                                       ),
@@ -686,12 +696,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 BoxConstraints constraints) {
                                           return Container(
                                               width: constraints.maxWidth,
-                                              child: const Text(
+                                              child: Text(
                                                 "Hussein Ali Qasem Tlees",
                                                 overflow: TextOverflow.clip,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                    color: Colors.white),
+                                                    color: MyColors.text()),
                                               ));
                                         }),
                                       ),
@@ -702,12 +712,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 BoxConstraints constraints) {
                                           return Container(
                                               width: constraints.maxWidth,
-                                              child: const Text(
+                                              child: Text(
                                                 "Vibrate",
                                                 overflow: TextOverflow.clip,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                    color: Colors.white),
+                                                    color: MyColors.text()),
                                               ));
                                         }),
                                       ),
@@ -730,10 +740,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           padding: EdgeInsets.all(
                               MediaQuery.of(context).size.width * 0.04),
-                          child: const Text(
+                          child: Text(
                             "Test Adhan",
                             style: TextStyle(
-                              color: Colors.white,
+                              color: MyColors.text(),
                             ),
                           ),
                         ),
@@ -841,10 +851,10 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               padding: EdgeInsets.all(
                                   MediaQuery.of(context).size.width * 0.04),
-                              child: const Text(
+                              child: Text(
                                 "Find Location by GPS",
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: MyColors.text(),
                                 ),
                               ),
                             ),
@@ -877,10 +887,10 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               padding: EdgeInsets.all(
                                   MediaQuery.of(context).size.width * 0.04),
-                              child: const Text(
+                              child: Text(
                                 "Set Location Manually",
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: MyColors.text(),
                                 ),
                               ),
                             ),
@@ -1322,7 +1332,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge!
-                                    .copyWith(fontSize: titleSize(context))),
+                                    .copyWith(fontSize: titleSize(context))
+                                ),
                           ]),
                     ),
                     flexibleSpace: FlexibleSpaceBar(
@@ -1357,9 +1368,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                               0.005),
                                       child: Text(
                                         HijriCalendar.now().fullDate(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headlineSmall,
+                                        style: TextStyle(
+                                          fontSize: MediaQuery.of(context).size.height*0.028,
+                                          color: MyColors.text()
+                                        ),
                                       ),
                                     ),
                                   ]),
@@ -1378,7 +1390,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     .size
                                                     .height *
                                                 0.02,
-                                            color: Colors.white),
+                                            color: MyColors.text()),
+                                            
                                       ),
                                       Text(
                                         "${hourIn24(salahTimes[1].hour)}:${lessThan10(
@@ -1386,12 +1399,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     ? " PM"
                                                     : " AM"}",
                                         style: TextStyle(
-                                            fontSize: MediaQuery.of(context)
+                                            fontSize:MediaQuery.of(context)
                                                     .size
                                                     .height *
                                                 0.035,
-                                            color: Colors.white),
-                                      ),
+                                            color: MyColors.text()),
+                                            
+                                      )
                                     ])),
                                   ),
                                   Expanded(
@@ -1405,7 +1419,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     .size
                                                     .height *
                                                 0.02,
-                                            color: Colors.white),
+                                            color: MyColors.text()),
+                                            
                                       ),
                                       Text(
                                         "${hourIn24(salahTimes[3].hour)}:${lessThan10(
@@ -1413,12 +1428,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     ? " PM"
                                                     : " AM"}",
                                         style: TextStyle(
-                                            fontSize: MediaQuery.of(context)
+                                            fontSize:MediaQuery.of(context)
                                                     .size
                                                     .height *
                                                 0.035,
-                                            color: Colors.white),
-                                      ),
+                                            color: MyColors.text()),
+                                            
+                                      )
                                     ])),
                                   ),
                                   Expanded(
@@ -1432,7 +1448,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     .size
                                                     .height *
                                                 0.02,
-                                            color: Colors.white),
+                                            color: MyColors.text()),
+                                            
                                       ),
                                       Text(
                                         "${hourIn24(salahTimes[5].hour)}:${lessThan10(
@@ -1440,12 +1457,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     ? " PM"
                                                     : " AM"}",
                                         style: TextStyle(
-                                            fontSize: MediaQuery.of(context)
+                                            fontSize:MediaQuery.of(context)
                                                     .size
                                                     .height *
                                                 0.035,
-                                            color: Colors.white),
-                                      ),
+                                            color: MyColors.text()),
+                                            
+                                      )
                                     ])),
                                   ),
                                 ],
@@ -1484,7 +1502,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 HomeCard(
                   title: "Duas",
-                  description: "Varius prayers from the Masumeen (as)",
+                  description: "Varius prayers from\nthe Masumeen (as)",
                   gradient: LinearGradient(
                     colors: [
                       MyColors.color2()[-200]!,
@@ -1532,7 +1550,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 HomeCard(
                   title: "Taaqibat",
-                  description: "Supplications after each prayer",
+                  description: "Supplications after\neach prayer",
                   gradient: LinearGradient(
                     colors: [
                       MyColors.color5()[-200]!,

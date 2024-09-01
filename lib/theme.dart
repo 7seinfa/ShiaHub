@@ -281,17 +281,20 @@ class _HomeCardState extends State<HomeCard> {
                                           builder: (context, constraintOfIcon) {
                                         return Container(
                                             alignment: Alignment.centerLeft,
-                                            child: Text(
-                                              widget.title,
-                                              style: TextStyle(
-                                                  fontSize: widget.fullLength
-                                                      ? constraintOfIcon
-                                                              .biggest.height *
-                                                          0.4
-                                                      : constraintOfIcon
-                                                              .biggest.height *
-                                                          0.38,
-                                                  color: Colors.white),
+                                            child: FittedBox(
+                                              fit: BoxFit.contain,
+                                              child: Text(
+                                                widget.title,
+                                                style: TextStyle(
+                                                    fontSize: widget.fullLength
+                                                        ? constraintOfIcon
+                                                                .biggest.height *
+                                                            0.4
+                                                        : constraintOfIcon
+                                                                .biggest.height *
+                                                            0.38,
+                                                    color: Colors.white),
+                                              )
                                             ));
                                       })),
                                   widget.description == null
@@ -312,14 +315,14 @@ class _HomeCardState extends State<HomeCard> {
                                                           .biggest.width *
                                                       0.04,
                                                   0),
-                                              child: Text(
-                                                widget.description!,
-                                                style: TextStyle(
-                                                    fontSize: constraintOfText
-                                                            .biggest.height *
-                                                        0.25,
-                                                    color: Colors.white),
-                                              ),
+                                              child: FittedBox(
+                                                fit: BoxFit.contain,
+                                                child: Text(
+                                                  widget.description!,
+                                                  style: TextStyle(
+                                                      color: MyColors.text()),
+                                                ),
+                                              )
                                             );
                                           })),
                                 ])),

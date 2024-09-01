@@ -179,8 +179,11 @@ class _DuaState extends State<Dua> {
         },
       ));
     }
-    dua = Column(
-      children: textList,
+    dua = Padding(
+      padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width*0.02, 0, MediaQuery.of(context).size.width*0.02, 0),
+      child: Column(
+        children: textList,
+      ),
     );
     recitations = widget.recitations!;
     reciterNames = widget.reciterNames!;
